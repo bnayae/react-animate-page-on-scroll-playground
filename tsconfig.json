@@ -6,11 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -21,20 +17,9 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "typeRoots": [
-      "./typings",
-      "./node_modules/@types/"
-    ],
+    "typeRoots": ["./typings", "./node_modules/@types/"],
     "allowSyntheticDefaultImports": true
   },
-  "exclude": [
-    "node_modules",
-    "typings",
-    "out"
-  ],
-  "include": [
-    "**/*.js",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "exclude": ["node_modules", "typings", "out"],
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx", "src/components/Page css"]
 }

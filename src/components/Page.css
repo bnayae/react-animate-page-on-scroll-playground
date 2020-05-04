@@ -1,0 +1,19 @@
+.item {
+  opacity: 0;
+}
+.item-animated {
+  animation: show 2s forwards;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translate(0rem, 5rem);
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+    animation-timing-function: ease-in-out;
+  }
+}
