@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // import AOS from "aos";
-import ReactPageScroller from "react-page-scroller";
 // import "aos/dist/aos.css"; // You can also use  for styles
 import "./App.css";
 import { Page, PageOdd } from "./components/Page";
+import { PageScrollRaw } from "./components/PageScroll/PageScrollRaw";
+import { PageIndex } from "./Hooks/PageContext";
 
 // https://samuelweber.at/article/how-to-use-aos-js-in-your-project
 
 function App() {
-  const [state, setState] = useState<number | null>(null);
-
-  const handlePageChange = (number: number) => {
-    setState(number); // set currentPage number, to reset it from the previous selected.
-  };
-
   useEffect(() => {
     // AOS.init({
     //   offset: 120, // offset (in px) from the original trigger point
@@ -42,68 +37,22 @@ function App() {
     // });
   });
 
-  const getPagesNumbers = () => {
-    const pageNumbers = [];
-
-    //let y = 0;
-    for (let i = 0; i < 4; i++) {
-      const cls = `nav-bullet ${i === state ? "zoom" : ""}`;
-      //y += 50;
-      pageNumbers.push(
-        <div
-          className={cls}
-          key={"circle_" + i}
-          onClick={(_e) => handlePageChange(i)}
-        >
-          <svg
-            viewBox="0 0 10 10"
-            xmlns="http://www.w3.org/2000/svg"
-            height="1.3rem"
-            className="svg"
-          >
-            <circle
-              cx="50%"
-              cy="50%"
-              r="4"
-              fill="#2106"
-              stroke="#4445"
-            ></circle>
-            <text
-              x="50%"
-              y="50%"
-              text-anchor="middle"
-              alignment-baseline="central"
-              font-family="Arial, Helvetica, sans-serif"
-              font-size="5"
-              fill="#fff7"
-            >
-              {i + 1}
-            </text>
-          </svg>
-        </div>
-      );
-    }
-
-    return [...pageNumbers];
-  };
-
-  const pagesNumbers = getPagesNumbers();
   return (
     <div className="App">
-      <div className="scroller-layout">
-        <div className="scroller">
-          <ReactPageScroller
-            pageOnChange={handlePageChange}
-            customPageNumber={state}
-          >
-            <Page content="Page 1" selected={state === 0}></Page>
-            <PageOdd content="Page 2" selected={state === 1}></PageOdd>
-            <Page content="Page 3" selected={state === 2}></Page>
-            <PageOdd content="Page 4" selected={state === 3}></PageOdd>
-          </ReactPageScroller>
-        </div>
-        <div className="scroller-nav">{pagesNumbers}</div>
-      </div>
+      <PageScrollRaw>
+        <PageIndex pageIndex={0}>
+          <Page content="Page 1"></Page>
+        </PageIndex>
+        <PageIndex pageIndex={1}>
+          <PageOdd content="Page 2"></PageOdd>
+        </PageIndex>
+        <PageIndex pageIndex={2}>
+          <Page content="Page 3"></Page>
+        </PageIndex>
+        <PageIndex pageIndex={3}>
+          <PageOdd content="Page 4"></PageOdd>
+        </PageIndex>
+      </PageScrollRaw>
     </div>
   );
 }

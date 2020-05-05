@@ -4,15 +4,15 @@ import { AnimatePresence, motion } from "framer-motion";
 // import { useMotionValue } from "framer-motion";
 // import { useTransform } from "framer-motion";
 import "./Page.css";
+import { usePageClass } from "../Hooks/PageContext";
 
 interface IProps {
   className?: any;
   content: string;
-  selected: boolean;
 }
 
 // https://github.com/dennismorello/react-awesome-reveal#demo
-export const PageARaw = ({ content, className, selected }: IProps) => {
+export const PageARaw = ({ content, className }: IProps) => {
   const variants = {
     init: { opacity: 0, y: 100 },
     target: { opacity: 1, y: 0 },
@@ -21,6 +21,8 @@ export const PageARaw = ({ content, className, selected }: IProps) => {
   useEffect(() => {
     console.log(`@@ ${content}`);
   }, []);
+
+  const responsiveClasses = usePageClass(["item"]);
 
   return (
     <section className={`page ${className}`}>
@@ -41,7 +43,7 @@ export const PageARaw = ({ content, className, selected }: IProps) => {
           <h2>{content}</h2>
         </motion.div>
       </AnimatePresence>
-      <div className={selected ? "item-animated" : "item"}>
+      <div className={responsiveClasses}>
         <h2>{content}</h2>
       </div>
       {/* </Suspense> */}

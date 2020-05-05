@@ -1,7 +1,7 @@
 .item {
   opacity: 0;
 }
-.item-animated {
+.active-page {
   animation: show 2s forwards;
 }
 
